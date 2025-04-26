@@ -14,13 +14,11 @@ class Inventario {
 private:
     Producto* frente;
     Producto* final;
-    int tamaño;
 
 public:
     Inventario() {
         frente = nullptr;
         final = nullptr;
-        tamaño = 0;
     }
    
     ~Inventario() {
@@ -51,7 +49,7 @@ public:
             final->siguiente = nuevo;
             final = nuevo;
         }
-        tamaño++;    
+            
     }
 
     void mostrarInventario() {
@@ -90,7 +88,7 @@ public:
         cout << "Producto no encontrado\n"; 
     }
     
-    int calcostoCostoTotal(int codigp) {
+    int calcularCostoTotal(int codigp) {
         int total = 0;
         Producto* actual = frente;
         while (actual != nullptr) {
@@ -111,7 +109,6 @@ public:
                 Producto* temp = frente;
                 frente = frente->siguiente;
                 free(temp);
-                tamaño--;
                 if (frente == nullptr) final = nullptr;
                 cout << "Producto eliminado exitosamente\n";
             } else {
@@ -128,7 +125,6 @@ public:
                     actual->siguiente = temp->siguiente;
                     if (temp == final) final = actual;
                     free(temp);
-                    tamaño--;
                     cout << "Producto eliminado exitosamente\n";    
                 } else {
                     cout << "Error: La cantidad debe ser 0 para eliminar\n";
@@ -179,7 +175,7 @@ int main() {
             break;
         }
         case 4:
-            cout << "Costo total del inventario: $" << inv.calcostoCostoTotal() << "\n";
+            cout << "Costo total del inventario: $" << inv.calcularCostoTotal();
             break;
         case 5: {
             int codigo;
